@@ -1,0 +1,27 @@
+﻿@model List<AdvancedEshop.Web.API.Models.Category>
+
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5 pb-3">
+        @{
+            var categoriesToDisplay = Model.Take(6).ToList();
+        }
+
+        @foreach (var category in categoriesToDisplay)
+        {
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    @* <a href="@Url.Action("Details", "Products", new { id = category.CategoryId })" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="@category.CategoryDescription" alt="">
+                    </a> *@
+
+                    <a href="/Products/Index/@category.CategoryId" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="@category.CategoryDescription" alt="">
+                    </a>
+
+
+                    <h5 class="font-weight-semi-bold m-0">@category.CategoryName</h5>
+                </div>
+            </div>
+        }
+    </div>
+</div>

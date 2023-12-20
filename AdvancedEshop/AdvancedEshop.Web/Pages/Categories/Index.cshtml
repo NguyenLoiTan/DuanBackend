@@ -1,0 +1,33 @@
+﻿@page "/Categories/Index"
+@model AdvancedEshop.Web.Pages.Categories.IndexModel
+
+<!-- Rest of your Razor code -->
+
+<h1>Categories</h1>
+
+@if (Model.Categories != null && Model.Categories.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Category Description</th>
+                <!-- Thêm các cột khác nếu cần -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model.Categories)
+            {
+                <tr>
+                    <td>@category.CategoryName</td>
+                    <td>@category.CategoryDescription</td>
+                    <!-- Thêm các cột khác nếu cần -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No categories available.</p>
+}
