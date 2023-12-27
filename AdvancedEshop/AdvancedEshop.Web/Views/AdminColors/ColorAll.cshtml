@@ -1,0 +1,45 @@
+﻿@model List<AdvancedEshop.Web.API.Models.Color>
+
+<h2>All Colors</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <!-- Thêm các cột khác nếu cần -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var color in Model)
+        {
+            <tr>
+                <td>@color.ColorId</td>
+                <td>@color.ColorName</td>
+                <td>
+                    <form asp-controller="AdminColors" asp-action="ColorDetails" method="get">
+                        <input type="hidden" name="id" value="@color.ColorId" />
+                        <button type="submit">Details</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-controller="AdminColors" asp-action="EditColor" method="get">
+                        <input type="hidden" name="id" value="@color.ColorId" />
+                        <button type="submit">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-controller="AdminColors" asp-action="DeleteColor" method="post" onsubmit="return confirm('Are you sure you want to delete this color?');">
+                        <input type="hidden" name="id" value="@color.ColorId" />
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                <!-- Thêm các trường dữ liệu khác nếu cần -->
+            </tr>
+        }
+
+        <form asp-controller="AdminColors" asp-action="CreateColor" method="get">
+            <button type="submit">Create Color</button>
+        </form>
+    </tbody>
+</table>

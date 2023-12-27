@@ -1,0 +1,33 @@
+﻿<!-- Views/Admin/EditCategory.cshtml -->
+@model AdvancedEshop.Web.API.Models.Category
+
+<h2>Edit Category</h2>
+
+<form asp-controller="AdminCategories" asp-action="UpdateCategory" method="post">
+    <div>
+        <label asp-for="CategoryName"></label>
+        <input asp-for="CategoryName" />
+        <span asp-validation-for="CategoryName"></span>
+    </div>
+
+    <div>
+        <label asp-for="CategoryDescription"></label>
+        <textarea asp-for="CategoryDescription"></textarea>
+        <span asp-validation-for="CategoryDescription"></span>
+    </div>
+
+    <div>
+        <label asp-for="CategoryOrder"></label>
+        <textarea asp-for="CategoryOrder"></textarea>
+        <span asp-validation-for="CategoryOrder"></span>
+    </div>
+
+    <!-- Thêm trường ẩn cho CategoryId -->
+    <input type="hidden" asp-for="CategoryId" />
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<form asp-controller="AdminCategories" asp-action="CategoryAll">
+    <button type="submit">Back</button>
+</form>

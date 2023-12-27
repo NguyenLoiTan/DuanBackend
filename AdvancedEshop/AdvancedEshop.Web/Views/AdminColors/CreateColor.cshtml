@@ -1,0 +1,21 @@
+﻿@model AdvancedEshop.Web.API.Models.Color
+
+<h2>Create Color</h2>
+
+<form asp-controller="AdminColors" asp-action="SaveColor" method="post">
+    <!-- Các trường dữ liệu để nhập thông tin Color -->
+    <div>
+        <label asp-for="ColorName"></label>
+        <input asp-for="ColorName" />
+        <span asp-validation-for="ColorName"></span>
+    </div>
+
+
+    <!-- Thêm các trường khác tương tự -->
+
+    <button type="submit">Create</button>
+</form>
+
+<form asp-controller="AdminColors" asp-action="ColorAll">
+    <button type="submit">Back</button>
+</form>

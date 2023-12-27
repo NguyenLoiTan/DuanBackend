@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdvancedEshop.Web.API.Models
@@ -18,7 +19,8 @@ namespace AdvancedEshop.Web.API.Models
         [ForeignKey("Category")]
         [Required(ErrorMessage = "Please specify a category")]
         public int CategoryId { get; set; }
-        public Category? Category { get; set; }
+        /*[BindNever]
+        public Category? Category { get; set; }*/
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Please enter a positive price")]
         [Column(TypeName = "decimal(8,2)")]
@@ -29,10 +31,12 @@ namespace AdvancedEshop.Web.API.Models
         public string? ProductPhoto {  get; set; }
         [ForeignKey("Size")]
         public int SizeId { get; set; }
-        public Size? Size { get; set; }
+        /*[BindNever]
+        public Size? Size { get; set; }*/
         [ForeignKey("Color")]
         public int ColorId { get; set; }
-        public Color? Color { get; set; }
+        /*[BindNever]
+        public Color? Color { get; set; }*/
         public bool IsTrandy { get; set; }
         public bool IsArrived { get; set; }
     }

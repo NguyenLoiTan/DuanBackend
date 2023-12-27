@@ -1,0 +1,20 @@
+﻿@model AdvancedEshop.Web.API.Models.Color
+
+<h2>Edit Color</h2>
+
+<form asp-controller="AdminColors" asp-action="UpdateColor" method="post">
+    <div>
+        <label asp-for="ColorName"></label>
+        <input asp-for="ColorName" />
+        <span asp-validation-for="ColorName"></span>
+    </div>
+
+    <!-- Thêm trường ẩn cho ColorId -->
+    <input type="hidden" asp-for="ColorId" />
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<form asp-controller="AdminColors" asp-action="ColorAll">
+    <button type="submit">Back</button>
+</form>

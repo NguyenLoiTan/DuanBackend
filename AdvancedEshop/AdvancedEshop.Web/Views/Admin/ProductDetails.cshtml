@@ -1,4 +1,5 @@
-﻿@model AdvancedEshop.Web.API.Models.Product
+﻿@* @model AdvancedEshop.Web.API.Models.Product *@
+@model AdvancedEshop.Web.API.Models.ProductDetailsViewModel
 
 <h3>Product Details</h3>
 
@@ -7,16 +8,23 @@
     <div>
         <h4>@Model.ProductName</h4>
         <p>Description: @Model.ProductDescription</p>
-        <p>Category: @Model.Category?.CategoryName</p>
+        <p>Category: @Model.CategoryName</p>
         <p>Price: $@Model.ProductPrice</p>
         <p>Discount: $@Model.ProductDiscount</p>
         <p>Photo: <img src="@Model.ProductPhoto" alt="Product Photo" style="max-width: 200px; max-height: 200px;" /></p>
-        <p>Size: @Model.Size?.SizeName</p>
-        <p>Color: @Model.Color?.ColorName</p>
+        <p>Size: @Model.SizeName</p>
+        <p>Color: @Model.ColorName</p>
         <p>Is Trendy: @Model.IsTrandy</p>
         <p>Is Arrived: @Model.IsArrived</p>
         <!-- Thêm các thông tin khác của sản phẩm -->
     </div>
+    <form asp-controller="Admin" asp-action="EditProduct" method="get">
+        <input type="hidden" name="id" value="@Model.ProductId" />
+        <button type="submit">Edit</button>
+    </form>
+    <form asp-controller="Admin" asp-action="ProductAll" method="get">
+        <button type="submit">Back</button>
+    </form>
 }
 else
 {

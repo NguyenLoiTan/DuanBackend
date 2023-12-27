@@ -20,7 +20,7 @@ namespace AdvancedEshop.Web.Components
         {
             var client = _clientFactory.CreateClient();
 
-            var response = client.GetAsync("https://localhost:7136/categories").Result;
+            var response = client.GetAsync("https://localhost:7136/categories2").Result;
             response.EnsureSuccessStatusCode();
 
             var content = response.Content.ReadAsStringAsync().Result;

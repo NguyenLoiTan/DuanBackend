@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,67 +11,68 @@ namespace AdvancedEshop.Web.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class Products2Controller : ControllerBase
+    public class Categories2Controller : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public Products2Controller(ApplicationDbContext context)
+        public Categories2Controller(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Products
+        // GET: Categories
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Product>>> Index()
+        public async Task<ActionResult<IEnumerable<Category>>> Index()
         {
-            var applicationDbContext = _context.Products;
-            return Ok(await applicationDbContext.ToListAsync());
+            return _context.Categories != null
+                ? await _context.Categories.ToListAsync()
+                : Problem("Entity set 'ApplicationDbContext.Categories' is null.");
         }
 
-        // GET: Products/Details/5
+        // GET: Categories/Details/5
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Product>> Details(int? id)
+        public async Task<ActionResult<Category>> Details(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.Categories == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            return category;
         }
 
-        // POST: Products/Create
+        // POST: Categories/Create
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Product>> Create([FromBody] Product product)
+        public async Task<ActionResult<Category>> Create([Bind("CategoryId,CategoryName,CategoryDescription,CategoryOrder")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(category);
                 await _context.SaveChangesAsync();
-                return CreatedAtAction(nameof(Details), new { id = product.ProductId }, product);
+                return CreatedAtAction(nameof(Details), new { id = category.CategoryId }, category);
             }
-            return BadRequest(product);
+            return BadRequest(category);
         }
 
-        // PUT: Products/Edit/5
+        // PUT: Categories/Edit/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Edit(int id, [FromBody] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName,CategoryDescription,CategoryOrder")] Category category)
         {
-            if (id != product.ProductId)
+            if (id != category.CategoryId)
             {
                 return BadRequest();
             }
@@ -80,12 +81,12 @@ namespace AdvancedEshop.Web.API.Controllers
             {
                 try
                 {
-                    _context.Update(product);
+                    _context.Update(category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.ProductId))
+                    if (!CategoryExists(category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -96,45 +97,45 @@ namespace AdvancedEshop.Web.API.Controllers
                 }
                 return NoContent();
             }
-            return BadRequest(product);
+            return BadRequest(category);
         }
 
-        // DELETE: Products/Delete/5
+        // DELETE: Categories/Delete/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Products == null)
+            if (id == null || _context.Categories == null)
             {
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (category == null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            return Ok(category);
         }
 
-        // DELETE: Products/RemoveConfirmed/5
+        // DELETE: Categories/RemoveConfirmed/5
         [HttpDelete("RemoveConfirmed/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> RemoveConfirmed(int id)
         {
-            if (_context.Products == null)
+            if (_context.Categories == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Products' is null.");
+                return Problem("Entity set 'ApplicationDbContext.Categories' is null.");
             }
 
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
+            var category = await _context.Categories.FindAsync(id);
+            if (category != null)
             {
-                _context.Products.Remove(product);
+                _context.Categories.Remove(category);
                 await _context.SaveChangesAsync();
                 return Ok();
             }
@@ -142,9 +143,11 @@ namespace AdvancedEshop.Web.API.Controllers
             return NotFound();
         }
 
-        private bool ProductExists(int id)
+        private bool CategoryExists(int id)
         {
-            return (_context.Products?.Any(e => e.ProductId == id)).GetValueOrDefault();
+            return (_context.Categories?.Any(e => e.CategoryId == id)).GetValueOrDefault();
         }
     }
+
+
 }

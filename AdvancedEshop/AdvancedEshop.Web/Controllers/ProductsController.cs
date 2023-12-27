@@ -31,7 +31,7 @@ namespace AdvancedEshop.Web.Controllers
             var products = JsonConvert.DeserializeObject<List<Product>>(content);
 
 
-            var filteredProducts = products?.Where(p => p.Category?.CategoryId == id || p.Category == null).ToList();
+            var filteredProducts = products?.Where(p => p.CategoryId == id || p.CategoryId == null).ToList();
 
             return View(filteredProducts);
         }

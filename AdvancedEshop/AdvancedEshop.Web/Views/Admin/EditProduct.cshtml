@@ -15,14 +15,21 @@
         <textarea asp-for="ProductDescription"></textarea>
         <span asp-validation-for="ProductDescription"></span>
     </div>
-
     <div>
         <label asp-for="CategoryId"></label>
-        <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"))">
-            <option value="">-- Select Category --</option>
-        </select>
+        @if (ViewBag.Categories != null)
+        {
+            <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"))">
+                <option value="">-- Select Category --</option>
+            </select>
+        }
+        else
+        {
+            <span>Categories are not available.</span>
+        }
         <span asp-validation-for="CategoryId"></span>
     </div>
+
 
     <div>
         <label asp-for="ProductPrice"></label>
@@ -42,34 +49,50 @@
         <span asp-validation-for="ProductPhoto"></span>
     </div>
 
-    <div>
+    @* <div>
         <label asp-for="SizeId"></label>
         <input asp-for="SizeId" />
-        <span asp-validation-for="SizeId"></span>
-    </div>
-
-    <div>
-        <label asp-for="ColorId"></label>
-        <input asp-for="ColorId" />
-        <span asp-validation-for="ColorId"></span>
-    </div>
-
-
-   @*  <div>
-        <label asp-for="SizeId"></label>
-        <select asp-for="SizeId" asp-items="@(new SelectList(ViewBag.Sizes, "SizeId", "SizeName"))">
-            <option value="">-- Select Size --</option>
-        </select>
         <span asp-validation-for="SizeId"></span>
     </div> *@
 
     @* <div>
         <label asp-for="ColorId"></label>
-        <select asp-for="ColorId" asp-items="@(new SelectList(ViewBag.Colors, "ColorId", "ColorName"))">
-            <option value="">-- Select Color --</option>
-        </select>
+        <input asp-for="ColorId" />
         <span asp-validation-for="ColorId"></span>
     </div> *@
+
+
+    <div>
+        <label asp-for="SizeId"></label>
+        @if (ViewBag.Sizes != null)
+        {
+            <select asp-for="SizeId" asp-items="@(new SelectList(ViewBag.Sizes, "SizeId", "SizeName"))">
+                <option value="">-- Select Size --</option>
+            </select>
+        }
+        else
+        {
+            <span>Sizes are not available.</span>
+        }
+        <span asp-validation-for="SizeId"></span>
+    </div>
+
+
+    <div>
+        <label asp-for="ColorId"></label>
+        @if (ViewBag.Colors != null)
+        {
+            <select asp-for="ColorId" asp-items="@(new SelectList(ViewBag.Colors, "ColorId", "ColorName"))">
+                <option value="">-- Select Color --</option>
+            </select>
+        }
+        else
+        {
+            <span>Colors are not available.</span>
+        }
+        <span asp-validation-for="ColorId"></span>
+    </div>
+
 
     <div>
         <label asp-for="IsTrandy"></label>
@@ -80,7 +103,12 @@
         <label asp-for="IsArrived"></label>
         <input asp-for="IsArrived" type="checkbox" />
     </div>
+    @* Thêm trường ẩn cho ProductId *@
+    <input type="hidden" asp-for="ProductId" />
 
     <button type="submit">Save Changes</button>
+    <form asp-controller="Admin" asp-action="ProductAll">
+        <button type="submit">Back</button>
+    </form>
 </form>
 

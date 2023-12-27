@@ -1,0 +1,24 @@
+﻿@model AdvancedEshop.Web.API.Models.Category
+
+<h3>Category Details</h3>
+
+@if (Model != null)
+{
+    <div>
+        <p>Name: @Model.CategoryName</p>
+        <p>Description: <img src="@Model.CategoryDescription" alt="Category Description" style="max-width: 100px; max-height: 100px;" /></p>
+        <p>Order: @Model.CategoryOrder</p>
+        <!-- Thêm các thông tin khác của danh mục -->
+    </div>
+    <form asp-controller="AdminCategories" asp-action="EditCategory" method="get">
+        <input type="hidden" name="id" value="@Model.CategoryId" />
+        <button type="submit">Edit</button>
+    </form>
+    <form asp-controller="AdminCategories" asp-action="CategoryAll" method="get">
+        <button type="submit">Back</button>
+    </form>
+}
+else
+{
+    <p>Category not found.</p>
+}

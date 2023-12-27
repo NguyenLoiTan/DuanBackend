@@ -23,6 +23,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -81,7 +82,16 @@
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-                @await Component.InvokeAsync("CartWidget")
+                @* @await Component.InvokeAsync("CartWidget") *@
+                @await Component.InvokeAsync("CartSummary")
+                @* <div class="row">
+                    <div class="col navbar-brand">SPORTS STORE</div>
+                    <div class="col-6 navbar-text text-end">
+                        <vc:cart-summary />
+                    </div>
+                </div> *@
+
+
                 
             </div>
         </div>

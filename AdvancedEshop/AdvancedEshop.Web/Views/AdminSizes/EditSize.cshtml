@@ -1,0 +1,20 @@
+﻿@model AdvancedEshop.Web.API.Models.Size
+
+<h2>Edit Size</h2>
+
+<form asp-controller="AdminSizes" asp-action="UpdateSize" method="post">
+    <div>
+        <label asp-for="SizeName"></label>
+        <input asp-for="SizeName" />
+        <span asp-validation-for="SizeName"></span>
+    </div>
+
+    <!-- Thêm trường ẩn cho SizeId -->
+    <input type="hidden" asp-for="SizeId" />
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<form asp-controller="AdminSizes" asp-action="SizeAll">
+    <button type="submit">Back</button>
+</form>

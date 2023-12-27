@@ -1,0 +1,22 @@
+﻿@model AdvancedEshop.Web.API.Models.Color
+
+<h3>Color Details</h3>
+
+@if (Model != null)
+{
+    <div>
+        <p>Name: @Model.ColorName</p>
+        <!-- Thêm các thông tin khác của màu sắc -->
+    </div>
+    <form asp-controller="AdminColors" asp-action="EditColor" method="get">
+        <input type="hidden" name="id" value="@Model.ColorId" />
+        <button type="submit">Edit</button>
+    </form>
+    <form asp-controller="AdminColors" asp-action="ColorAll" method="get">
+        <button type="submit">Back</button>
+    </form>
+}
+else
+{
+    <p>Color not found.</p>
+}

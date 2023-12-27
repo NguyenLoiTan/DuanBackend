@@ -1,4 +1,5 @@
-﻿@model List<AdvancedEshop.Web.API.Models.Product>
+﻿@* @model List<AdvancedEshop.Web.API.Models.Product> *@
+@model List<AdvancedEshop.Web.API.Models.ProductViewModel>
 
 <h2>All Products</h2>
 
@@ -26,27 +27,43 @@
                 <td>@product.ProductId</td>
                 <td>@product.ProductName</td>
                 <td>@product.ProductDescription</td>
-                <td>@product.Category?.CategoryName</td>
+                @* <td>@product.CategoryId</td> *@
+                <td>@product.CategoryName</td>
                 <td>@product.ProductPrice</td>
                 <td>@product.ProductDiscount</td>
                 <td>
                     <img src="@product.ProductPhoto" alt="Product Photo" style="max-width: 100px; max-height: 100px;" />
                 </td>
-                <td>@product.Size?.SizeName</td>
-                <td>@product.Color?.ColorName</td>
+                <td>@product.SizeName</td>
+                <td>@product.ColorName</td>
                 <td>@product.IsTrandy</td>
                 <td>@product.IsArrived</td>
                 <td>
-                    <a asp-controller="Admin" asp-action="ProductDetails" asp-route-id="@product.ProductId">Details</a>
+                    <form asp-controller="Admin" asp-action="ProductDetails" method="get">
+                        <input type="hidden" name="id" value="@product.ProductId" />
+                        <button type="submit">Details</button>
+                    </form>
+                </td>
+                
+                <td>
+                    <form asp-controller="Admin" asp-action="EditProduct" method="get">
+                        <input type="hidden" name="id" value="@product.ProductId" />
+                        <button type="submit">Edit</button>
+                    </form>
                 </td>
                 <td>
-                <a asp-controller="Admin" asp-action="CreateProduct">Create Product</a>
-                </td>
-                <td>
-                    <a asp-controller="Admin" asp-action="EditProduct" asp-route-id="@product.ProductId">Edit</a>
+                    <form asp-controller="Admin" asp-action="DeleteProduct" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                        <input type="hidden" name="id" value="@product.ProductId" />
+                        <button type="submit">Delete</button>
+                    </form>
                 </td>
                 <!-- Thêm các trường dữ liệu khác nếu cần -->
             </tr>
         }
+    
+        <form asp-controller="Admin" asp-action="CreateProduct" method="get">
+            <button type="submit">Create Product</button>
+        </form>
+    
     </tbody>
 </table>

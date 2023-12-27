@@ -1,0 +1,20 @@
+﻿@model AdvancedEshop.Web.API.Models.Size
+
+<h2>Create Size</h2>
+
+<form asp-controller="AdminSizes" asp-action="SaveSize" method="post">
+    <!-- Các trường dữ liệu để nhập thông tin Size -->
+    <div>
+        <label asp-for="SizeName"></label>
+        <input asp-for="SizeName" />
+        <span asp-validation-for="SizeName"></span>
+    </div>
+
+    <!-- Thêm các trường khác tương tự -->
+
+    <button type="submit">Create</button>
+</form>
+
+<form asp-controller="AdminSizes" asp-action="SizeAll">
+    <button type="submit">Back</button>
+</form>

@@ -18,7 +18,16 @@
 
     <div>
         <label asp-for="CategoryId"></label>
-        <input asp-for="CategoryId" />
+        @if (ViewBag.Categories != null)
+        {
+            <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"))">
+                <option value="">-- Select Category --</option>
+            </select>
+        }
+        else
+        {
+            <span>Categories are not available.</span>
+        }
         <span asp-validation-for="CategoryId"></span>
     </div>
 
@@ -42,13 +51,31 @@
 
     <div>
         <label asp-for="SizeId"></label>
-        <input asp-for="SizeId" />
+        @if (ViewBag.Sizes != null)
+        {
+            <select asp-for="SizeId" asp-items="@(new SelectList(ViewBag.Sizes, "SizeId", "SizeName"))">
+                <option value="">-- Select Size --</option>
+            </select>
+        }
+        else
+        {
+            <span>Sizes are not available.</span>
+        }
         <span asp-validation-for="SizeId"></span>
     </div>
 
     <div>
         <label asp-for="ColorId"></label>
-        <input asp-for="ColorId" />
+        @if (ViewBag.Colors != null)
+        {
+            <select asp-for="ColorId" asp-items="@(new SelectList(ViewBag.Colors, "ColorId", "ColorName"))">
+                <option value="">-- Select Color --</option>
+            </select>
+        }
+        else
+        {
+            <span>Colors are not available.</span>
+        }
         <span asp-validation-for="ColorId"></span>
     </div>
 
@@ -67,4 +94,9 @@
     <!-- Thêm các trường khác tương tự -->
 
     <button type="submit">Create</button>
+
+    
+</form>
+<form asp-controller="Admin" asp-action="ProductAll">
+    <button type="submit">Back</button>
 </form>

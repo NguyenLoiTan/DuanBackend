@@ -1,0 +1,45 @@
+﻿@model List<AdvancedEshop.Web.API.Models.Size>
+
+<h2>All Sizes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <!-- Thêm các cột khác nếu cần -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var size in Model)
+        {
+            <tr>
+                <td>@size.SizeId</td>
+                <td>@size.SizeName</td>
+                <td>
+                    <form asp-controller="AdminSizes" asp-action="SizeDetails" method="get">
+                        <input type="hidden" name="id" value="@size.SizeId" />
+                        <button type="submit">Details</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-controller="AdminSizes" asp-action="EditSize" method="get">
+                        <input type="hidden" name="id" value="@size.SizeId" />
+                        <button type="submit">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-controller="AdminSizes" asp-action="DeleteSize" method="post" onsubmit="return confirm('Are you sure you want to delete this size?');">
+                        <input type="hidden" name="id" value="@size.SizeId" />
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                <!-- Thêm các trường dữ liệu khác nếu cần -->
+            </tr>
+        }
+
+        <form asp-controller="AdminSizes" asp-action="CreateSize" method="get">
+            <button type="submit">Create Size</button>
+        </form>
+    </tbody>
+</table>
