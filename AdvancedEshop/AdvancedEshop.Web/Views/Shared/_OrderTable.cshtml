@@ -1,0 +1,42 @@
+﻿@model OrderTableViewModel
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr><th colspan="5" class="text-center">@Model.TableTitle</th></tr>
+    </thead>
+    <tbody>
+        @if (Model.Orders?.Any() == true)
+        {
+            @foreach (Order o in Model.Orders)
+            {
+                <tr>
+                    <td>@o.FirstName</td>
+                    <td>@o.ZipCode</td>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <td>
+                        <form asp-controller="Admin" asp-action="@(Model.ButtonLabel.ToLower() == "ship" ? "ShipOrder" : "ResetOrder")" method="post">
+                            <input type="hidden" name="id" value="@o.OrderID" />
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                @Model.ButtonLabel
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                foreach (CartLine line in o.Lines)
+                {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>@line.Product.ProductName</td>
+                        <td>@line.Quantity</td>
+                        <td></td>
+                    </tr>
+                }
+            }
+        }
+        else
+        {
+            <tr><td colspan="5" class="text-center">No Orders</td></tr>
+        }
+    </tbody>
+</table>

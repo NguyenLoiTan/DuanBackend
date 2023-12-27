@@ -1,0 +1,52 @@
+﻿@model List<AdvancedEshop.Web.API.Models.Product>
+
+<h2>All Products</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Discount</th>
+            <th>Photo</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Is Trendy</th>
+            <th>Is Arrived</th>
+            <!-- Thêm các cột khác nếu cần -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductId</td>
+                <td>@product.ProductName</td>
+                <td>@product.ProductDescription</td>
+                <td>@product.Category?.CategoryName</td>
+                <td>@product.ProductPrice</td>
+                <td>@product.ProductDiscount</td>
+                <td>
+                    <img src="@product.ProductPhoto" alt="Product Photo" style="max-width: 100px; max-height: 100px;" />
+                </td>
+                <td>@product.Size?.SizeName</td>
+                <td>@product.Color?.ColorName</td>
+                <td>@product.IsTrandy</td>
+                <td>@product.IsArrived</td>
+                <td>
+                    <a asp-controller="Admin" asp-action="ProductDetails" asp-route-id="@product.ProductId">Details</a>
+                </td>
+                <td>
+                <a asp-controller="Admin" asp-action="CreateProduct">Create Product</a>
+                </td>
+                <td>
+                    <a asp-controller="Admin" asp-action="EditProduct" asp-route-id="@product.ProductId">Edit</a>
+                </td>
+                <!-- Thêm các trường dữ liệu khác nếu cần -->
+            </tr>
+        }
+    </tbody>
+</table>

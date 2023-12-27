@@ -1,0 +1,24 @@
+﻿<!-- Views/Shared/_AdminLayout.cshtml -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Layout</title>
+    <!-- Add your styles and scripts here -->
+</head>
+<body>
+    <div>
+        <a class="btn btn-outline-primary" href="/admin/index">
+            Orders
+        </a>
+
+        <a class="btn btn-outline-primary" href="/admin/productall">
+            Products
+        </a>
+
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+</body>
+</html>

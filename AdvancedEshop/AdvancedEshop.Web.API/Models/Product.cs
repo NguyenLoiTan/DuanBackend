@@ -7,14 +7,20 @@ namespace AdvancedEshop.Web.API.Models
     {
         [Key]
         public int ProductId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a product name")]
         [StringLength(150)]
+
         public string? ProductName { get; set; }
         [StringLength(3000)]
+        [Required(ErrorMessage = "Please enter a description")]
+
         public string? ProductDescription { get; set; }
         [ForeignKey("Category")]
+        [Required(ErrorMessage = "Please specify a category")]
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
+        [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Please enter a positive price")]
         [Column(TypeName = "decimal(8,2)")]
         public decimal? ProductPrice { get; set; }
         [Column(TypeName = "decimal(8,2)")]

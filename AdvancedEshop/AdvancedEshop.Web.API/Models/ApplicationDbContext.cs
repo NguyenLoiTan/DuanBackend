@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
+using AdvancedEshop.Web.API.Models;
 
 namespace AdvancedEshop.Web.API.Models
 {
@@ -19,6 +20,9 @@ namespace AdvancedEshop.Web.API.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Size> Sizes { get; set; }
+        
+
+
 
     }
 

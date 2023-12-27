@@ -23,7 +23,7 @@ namespace AdvancedEshop.Web.Components
                 var client = _clientFactory.CreateClient();
 
                 // Gọi API để lấy danh sách sản phẩm
-                var response = client.GetAsync("https://localhost:7136/products").Result;
+                var response = client.GetAsync("https://localhost:7136/products2").Result;
                 response.EnsureSuccessStatusCode();
 
                 var content = response.Content.ReadAsStringAsync().Result;

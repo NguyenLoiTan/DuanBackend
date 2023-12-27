@@ -8,16 +8,9 @@
         <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
-
-
-
         @foreach (var product in Model)
         {
             @await Html.PartialAsync("_Product", product)
         }
-        
-
-
-        
     </div>
 </div>

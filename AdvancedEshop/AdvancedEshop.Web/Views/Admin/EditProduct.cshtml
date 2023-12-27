@@ -1,0 +1,86 @@
+﻿<!-- Views/Admin/EditProduct.cshtml -->
+@model AdvancedEshop.Web.API.Models.Product
+
+<h2>Edit Product</h2>
+
+<form asp-controller="Admin" asp-action="UpdateProduct" method="post">
+    <div>
+        <label asp-for="ProductName"></label>
+        <input asp-for="ProductName" />
+        <span asp-validation-for="ProductName"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductDescription"></label>
+        <textarea asp-for="ProductDescription"></textarea>
+        <span asp-validation-for="ProductDescription"></span>
+    </div>
+
+    <div>
+        <label asp-for="CategoryId"></label>
+        <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"))">
+            <option value="">-- Select Category --</option>
+        </select>
+        <span asp-validation-for="CategoryId"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductPrice"></label>
+        <input asp-for="ProductPrice" />
+        <span asp-validation-for="ProductPrice"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductDiscount"></label>
+        <input asp-for="ProductDiscount" />
+        <span asp-validation-for="ProductDiscount"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductPhoto"></label>
+        <input asp-for="ProductPhoto" />
+        <span asp-validation-for="ProductPhoto"></span>
+    </div>
+
+    <div>
+        <label asp-for="SizeId"></label>
+        <input asp-for="SizeId" />
+        <span asp-validation-for="SizeId"></span>
+    </div>
+
+    <div>
+        <label asp-for="ColorId"></label>
+        <input asp-for="ColorId" />
+        <span asp-validation-for="ColorId"></span>
+    </div>
+
+
+   @*  <div>
+        <label asp-for="SizeId"></label>
+        <select asp-for="SizeId" asp-items="@(new SelectList(ViewBag.Sizes, "SizeId", "SizeName"))">
+            <option value="">-- Select Size --</option>
+        </select>
+        <span asp-validation-for="SizeId"></span>
+    </div> *@
+
+    @* <div>
+        <label asp-for="ColorId"></label>
+        <select asp-for="ColorId" asp-items="@(new SelectList(ViewBag.Colors, "ColorId", "ColorName"))">
+            <option value="">-- Select Color --</option>
+        </select>
+        <span asp-validation-for="ColorId"></span>
+    </div> *@
+
+    <div>
+        <label asp-for="IsTrandy"></label>
+        <input asp-for="IsTrandy" type="checkbox" />
+    </div>
+
+    <div>
+        <label asp-for="IsArrived"></label>
+        <input asp-for="IsArrived" type="checkbox" />
+    </div>
+
+    <button type="submit">Save Changes</button>
+</form>
+

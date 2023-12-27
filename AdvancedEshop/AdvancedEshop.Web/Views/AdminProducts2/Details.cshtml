@@ -1,0 +1,17 @@
+﻿@model AdvancedEshop.Web.API.Models.Product
+
+<h3>Product Details</h3>
+
+@if (Model != null)
+{
+    <div>
+        <h4>@Model.ProductName</h4>
+        <p>Description: @Model.ProductDescription</p>
+        <p>Price: $@Model.ProductPrice</p>
+        <!-- Thêm các thông tin khác của sản phẩm -->
+    </div>
+}
+else
+{
+    <p>Product not found.</p>
+}

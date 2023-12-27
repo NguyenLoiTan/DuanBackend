@@ -1,0 +1,70 @@
+﻿@model AdvancedEshop.Web.API.Models.Product
+
+<h2>Create Product</h2>
+
+<form asp-controller="Admin" asp-action="SaveProduct" method="post">
+    <!-- Các trường dữ liệu để nhập thông tin sản phẩm -->
+    <div>
+        <label asp-for="ProductName"></label>
+        <input asp-for="ProductName" />
+        <span asp-validation-for="ProductName"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductDescription"></label>
+        <textarea asp-for="ProductDescription"></textarea>
+        <span asp-validation-for="ProductDescription"></span>
+    </div>
+
+    <div>
+        <label asp-for="CategoryId"></label>
+        <input asp-for="CategoryId" />
+        <span asp-validation-for="CategoryId"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductPrice"></label>
+        <input asp-for="ProductPrice" />
+        <span asp-validation-for="ProductPrice"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductDiscount"></label>
+        <input asp-for="ProductDiscount" />
+        <span asp-validation-for="ProductDiscount"></span>
+    </div>
+
+    <div>
+        <label asp-for="ProductPhoto"></label>
+        <input asp-for="ProductPhoto" />
+        <span asp-validation-for="ProductPhoto"></span>
+    </div>
+
+    <div>
+        <label asp-for="SizeId"></label>
+        <input asp-for="SizeId" />
+        <span asp-validation-for="SizeId"></span>
+    </div>
+
+    <div>
+        <label asp-for="ColorId"></label>
+        <input asp-for="ColorId" />
+        <span asp-validation-for="ColorId"></span>
+    </div>
+
+    <div>
+        <label asp-for="IsTrandy"></label>
+        <input asp-for="IsTrandy" type="checkbox" />
+        <span asp-validation-for="IsTrandy"></span>
+    </div>
+
+    <div>
+        <label asp-for="IsArrived"></label>
+        <input asp-for="IsArrived" type="checkbox" />
+        <span asp-validation-for="IsArrived"></span>
+    </div>
+
+    <!-- Thêm các trường khác tương tự -->
+
+    <button type="submit">Create</button>
+</form>

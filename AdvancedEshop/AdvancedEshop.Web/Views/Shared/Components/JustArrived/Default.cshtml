@@ -9,7 +9,6 @@
 
         @foreach (var product in Model)
         {
-            @* <parial name="_Product" model="product" /> *@
             @await Html.PartialAsync("_Product", product) 
         }
         
