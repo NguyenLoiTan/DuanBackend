@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "V9AFgNOCb6qa2cYV/9Zklc8cwLvgYa0IatIXzOP8o2c=",
+  "Source": "AdvancedEshop.Web.API",
+  "BasePath": "_content/AdvancedEshop.Web.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
